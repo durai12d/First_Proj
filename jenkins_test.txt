@@ -1,0 +1,31 @@
+ {
+    agent any
+    
+    
+    
+    stages {
+        stage('checkout') {
+            steps {
+                cleanWs()
+                 // sh 'kubectl delete -f /home/ubuntu/tomcat.yaml'
+                git branch: 'master', url: 'https://github.com/suresh199318/kubernetes_deploy.git'
+                
+            }
+            
+        }
+    stage('Build') {
+        steps {
+            withCredentials([file(credentialsId: 'kubes', variable: 'KUBECRED')]) {
+            sh '''
+            ls -la
+            '''
+                
+            }
+            
+        }
+        
+    }
+      
+  }
+    
+}
